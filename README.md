@@ -1,108 +1,139 @@
-<p align="center">
-  <img src="https://e.top4top.io/p_38721hu6c1.jpg" width="250"/>
-</p>
+# MnzaaXD-Baileys 🚀
+
+<div align="center">
+
+![NodeJS](https://img.shields.io/badge/Node.js-v18%2B-green?style=flat-square&logo=node.js)
+![Baileys](https://img.shields.io/badge/Baileys-Interactive%20Edition-blue?style=flat-square&logo=whatsapp)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
+
+*Base Bot WhatsApp canggih berbasis Node.js menggunakan library Baileys dengan dukungan penuh untuk fitur pesan interaktif (Buttons, List, & Cards).*
+
+</div>
 
 ---
 
-WhatsApp Baileys is an open-source library designed to help developers build automation solutions and integrations with WhatsApp efficiently and directly. Using websocket technology without the need for a browser, this library supports a wide range of features such as message management, chat handling, group administration, as well as interactive messages and action buttons for a more dynamic user experience.
+## 📋 Daftar Isi
+- [Fitur Utama](#-fitur-utama)
+- [Prasyarat Sistem](#-prasyarat-sistem)
+- [Cara Instalasi](#-cara-instalasi)
+  - [1. Instalasi di Termux (Android)](#1-instalasi-di-termux-android)
+  - [2. Instalasi di PC / Laptop (Node.js & GitHub)](#2-instalasi-di-pc--laptop-nodejs--github)
+- [Konfigurasi Penting (`package.json` & Lainnya)](#-konfigurasi-penting-packagejson--lainnya)
+- [Cara Menjalankan Bot](#-cara-menjalankan-bot)
+- [Catatan Penting](#-catatan-penting)
+- [Kredit & Kontribusi](#-kredit--kontribusi)
 
-Actively developed and maintained, baileys continuously receives updates to enhance stability and performance. One of the main focuses is to improve the pairing and authentication processes to be more stable and secure. Pairing features can be customized with your own codes, making the process more reliable and less prone to interruptions.
+---
 
-This library is highly suitable for building business bots, chat automation systems, customer service solutions, and various other communication automation applications that require high stability and comprehensive features. With a lightweight and modular design, baileys is easy to integrate into different systems and platforms.
+## ✨ Fitur Utama
+* 🟢 **Pairing Code Support:** Login mudah menggunakan nomor WhatsApp tanpa QR Code yang ribet.
+* 🔘 **Interactive Buttons & Lists:** Mendukung tombol interaktif dan menu *list*.
+* 📥 **All-in-One Downloader:** Fitur unduh media dari berbagai platform populer.
+* 🎨 **Maker Tools:** Pembuat stiker, *brat*, dan manipulasi media lainnya.
+* 🎮 **Mini Games:** Fitur permainan interaktif di dalam bot.
 
---- 
+---
 
-## Installation
+## ⚙️ Prasyarat Sistem
+Sebelum menginstal bot ini, pastikan perangkat Anda telah terpasang:
+* **Node.js** (Versi LTS v18 atau v20 direkomendasikan).
+* **Git** (Untuk *cloning* repositori).
+* **FFmpeg** (Wajib untuk pemrosesan media, stiker, dan audio).
 
+---
+
+## 📦 Cara Instalasi
+
+### 1. Instalasi di Termux (Android)
+Buka aplikasi Termux Anda, kemudian jalankan perintah di bawah ini secara berurutan:
 ```bash
-npm install @whiskeysockets/baileys
+# Perbarui dan upgrade paket Termux
+pkg update && pkg upgrade -y
+
+# Instal Git, Node.js, dan FFmpeg
+pkg install git nodejs ffmpeg -y
+
+# Kloning repositori bot Anda
+git clone https://github.com/Arceuzx/MnzaaXD-Baileys.git
+
+# Masuk ke direktori bot
+cd MnzaaXD-Baileys
+
+# Instal semua dependensi
+npm install
 ```
 
-Add it to your `package.json`:
+### 2. Instalasi di PC / Laptop (Node.js & GitHub)
+Buka Command Prompt (CMD), PowerShell, atau Terminal di komputer Anda, lalu jalankan perintah berikut secara berurutan:
+```bash
+# Kloning repositori ke komputer lokal
+git clone https://github.com/Arceuzx/MnzaaXD-Baileys.git
+
+# Masuk ke folder proyek
+cd MnzaaXD-Baileys
+
+# Instal bersih semua dependensi
+npm install
+```
+
+---
+
+## 🛠️ Konfigurasi Penting (`package.json` & Lainnya)
+
+Agar bot dapat berjalan sesuai keinginan Anda, ada beberapa file penting yang perlu dan bisa diubah (baik secara penting maupun opsional):
+
+### A. Mengubah `package.json` (Penting)
+Buka file `package.json` di *root folder* bot. Bagian ini penting untuk mendefinisikan informasi bot dan sumber *library* Anda:
+
 ```json
 {
-  "dependencies": {
-    "@whiskeysockets/baileys": "github:sahrilcode/baileys"
-  }
+   "name": "mnzaaxd-bot",
+   "version": "1.0.0",
+   "description": "Bot WhatsApp interaktif",
+   "main": "index.js",
+   "type": "module",
+   "author": "Nama Anda",
+   "dependencies": {
+      "@whiskeysockets/baileys": "github:Arceuzx/MnzaaXD-Baileys",
+      "@napi-rs/image": "^1.12.0",
+      "file-type": "21.3.4",
+      "qrcode": "~1.5.4",
+      "yt-search": "^2.13.1"
+   }
 }
 ```
+* **Yang perlu diubah:**
+  * `"name"`: Ganti dengan nama proyek bot Anda.
+  * `"author"`: Ganti dengan nama Anda sebagai pembuat.
+  * `"@whiskeysockets/baileys"`: Pastikan mengarah ke repositori GitHub Anda sendiri (`github:USERNAME/REPOSITORY`) jika ingin menjadikannya sumber privat atau publik Anda.
 
-## Import
-```javascript
-const {
-  default:makeWASocket,
-  // Other Options 
-} = require('@whiskeysockets/baileys');
+### B. Konfigurasi Utama (`settings.js` / `index.js`) — Opsional & Penting
+Cari file konfigurasi utama bot Anda (such as `settings.js`), beberapa hal yang bisa diubah meliputi:
+* **Nomor Owner / Developer:** Masukkan nomor WhatsApp Anda agar mendapatkan akses *owner commands*.
+* **Nama Bot (`botName`):** Ubah nama panggilan bot sesuai selera.
+* **Pairing Code:** Pastikan `global.pairingCode = true` jika ingin menggunakan metode login nomor telepon.
+
+---
+
+## 🚀 Cara Menjalankan Bot
+
+Setelah proses instalasi (`npm install`) selesai dan konfigurasi di atas disesuaikan, jalankan bot dengan perintah berikut:
+
+```bash
+npm start
 ```
 
----
-# How To Connect To Whatsapp
-## With QR Code
-```javascript
-const {
-  default: makeWASocket,
-  Browsers
-  // Other Options
-} = require('@whiskeysockets/baileys');
-
-const client = makeWASocket({
-  browser: Browsers.ubuntu('Chrome'),
-  printQRInTerminal: true
-})
-```
-
-## Connect With Number
-```javascript
-const {
-  default: makeWASocket,
-  fetchLatestWAWebVersion,
-  Browsers
-} = require('@whiskeysockets/baileys');
-
-const client = makeWASocket({
-  browser: Browsers.ubuntu('Chrome'),
-  printQRInTerminal: false,
-  version: fetchLatestWAWebVersion(),
-  auth: state
-});
-
-const number = "628XXXXX";
-const code = await client.requestPairingCode(number.trim) /* Use : (number, "XXXXXXXX") for custom-pairing */
-
-console.log("Ur pairing code : " + code)
-```
+* Jika ini pertama kali dijalankan dan menggunakan *Pairing Code*, masukkan nomor WhatsApp Anda (contoh: `628xxxxxxxxxx`) saat diminta di terminal.
+* Salin dan masukkan *pairing code* yang muncul ke aplikasi WhatsApp Anda (masuk ke ikon titik tiga di kanan atas > **Perangkat Tertaut** > **Tautkan dengan nomor telepon**).
 
 ---
 
-## Why Choose WhatsApp Baileys?
-
-Because this library offers high stability, full features, and an actively improved pairing process. It is ideal for developers aiming to create professional and secure WhatsApp automation solutions. Support for the latest WhatsApp features ensures compatibility with platform updates.
-
----
-
-### Technical Notes
-
-- Supports custom pairing codes that are stable and secure
-- Fixes previous issues related to pairing and authentication
-- Features interactive messages and action buttons for dynamic menu creation
-- Automatic and efficient session management for long-term stability
-- Compatible with the latest multi-device features from WhatsApp
-- Easy to integrate and customize based on your needs
-- Perfect for developing bots, customer service automation, and other communication applications
-- Has 1 newsletter follow, only the developer's WhatsApp channel: [WhatsApp Channel](https://whatsapp.com/channel/0029Vb8nqcVCHDypfSfySZ29)
+## ⚠️ Catatan Penting
+1. **Struktur Media:** Pastikan folder `media/Image/` memiliki file `thumbnail.jpg` agar fitur menu tidak mengalami error `ENOENT`.
+2. **Koneksi Internet:** Pastikan koneksi stabil saat menjalankan `npm install` pertama kali.
 
 ---
 
-For complete documentation, installation guides, and implementation examples, please visit the official repository and community forums. We continually update and improve this library to meet the needs of developers and users of modern WhatsApp automation solutions.
-
-**Thank you for choosing WhatsApp Baileys as your WhatsApp automation solution!**
-
-
----
-
-### 📞 Contact Developer
-
-For questions, support, or collaboration, feel free to contact the developer:
-
-- **Telegram**: [Telegram Contact](https://t.me/sahril2nd)
-- **Channel**: [Channel Telegram](https://t.me/sahril2nd_dev) 
+## 📜 Kredit & Kontribusi
+* **WhiskeySockets** — Base pengembang *library* Baileys asli.
+* **Arceuzx** — Pemelihara dan pengembang repositori ini.
