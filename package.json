@@ -1,5 +1,5 @@
 {
-    "name": "@sahril2nd/baileys",
+    "name": "Arceuzx/MnzaaXD-Baileys",
     "version": "1.0.1",
     "description": "A WebSockets library for interacting with WhatsApp Web.",
     "keywords": [
@@ -7,13 +7,13 @@
         "whatsapp",
         "whatsapp-baileys"
     ],
-    "homepage": "https://github.com/sahrilcode/baileys",
+    "homepage": "https://github.com/Arceuzx/MnzaaXD-Baileys",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/sahrilcode/baileys.git"
+        "url": "git+https://github.com/Arceuzx/MnzaaXD-Baileys.git"
     },
     "license": "MIT",
-    "author": "Sahril2ndxsynC",
+    "author": "Arceuzx",
     "main": "lib/index.js",
     "files": [
         "lib/**/*",
